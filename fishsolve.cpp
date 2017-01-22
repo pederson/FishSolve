@@ -43,10 +43,10 @@ int main(int argc, char * argv[]){
 	Vector rho(nx*ny);
 	/*
 	// quadrupole
-	rho(nx*(ny*0.25)+nx*0.25) = -1*dx*dx;
-	rho(nx*(ny*0.25)+nx*0.75) = 1*dx*dx;
-	rho(nx*(ny*0.75)+nx*0.25) = 1*dx*dx;
-	rho(nx*(ny*0.75)+nx*0.75) = -1*dx*dx;
+	rho(nx*(ny*0.48)+nx*0.48) = -1*dx*dx;
+	rho(nx*(ny*0.48)+nx*0.52) = 1*dx*dx;
+	rho(nx*(ny*0.52)+nx*0.48) = 1*dx*dx;
+	rho(nx*(ny*0.52)+nx*0.52) = -1*dx*dx;
 	*/
 	rho = randvecn(nx*ny);
 
@@ -129,16 +129,16 @@ int main(int argc, char * argv[]){
 	// cout << "iterated: " << niters << " times" << endl;
 	// cout << "pc cg resid: " << (rho - Op*x).norm() << endl;
 
-	cout << "************************** CG - INCOMPLETE LU PC:" << endl;
-	ILUPreconditioner ilupc(Op);
-	x.fill(0);
-	niters = conjugate_gradient(Op, rho, x, nitmax);
-	cout << "iterated: " << niters << " times" << endl;
-	cout << "cg resid: " << (rho - Op*x).norm() << endl;
-	x.fill(0);
-	niters = conjugate_gradient(&ilupc, Op, rho, x, nitmax);
-	cout << "iterated: " << niters << " times" << endl;
-	cout << "pc cg resid: " << (rho - Op*x).norm() << endl;
+	// cout << "************************** CG - INCOMPLETE LU PC:" << endl;
+	// ILUPreconditioner ilupc(Op);
+	// x.fill(0);
+	// niters = conjugate_gradient(Op, rho, x, nitmax);
+	// cout << "iterated: " << niters << " times" << endl;
+	// cout << "cg resid: " << (rho - Op*x).norm() << endl;
+	// x.fill(0);
+	// niters = conjugate_gradient(&ilupc, Op, rho, x, nitmax);
+	// cout << "iterated: " << niters << " times" << endl;
+	// cout << "pc cg resid: " << (rho - Op*x).norm() << endl;
 
 	// cout << "************************** CG - AMG PC:" << endl;
 	// AMGPreconditioner amgpc(Op);
@@ -152,15 +152,15 @@ int main(int argc, char * argv[]){
 	// cout << "pc cg resid: " << norm_2(rho - Op*x) << endl;
 
 
-	cout << "************************** BICGSTAB - INCOMPLETE LU PC:" << endl;
-	x.fill(0);
-	niters = bicgstab(Op, rho, x, nitmax);
-	cout << "iterated: " << niters << " times" << endl;
-	cout << "bicgstab resid: " << (rho - Op*x).norm() << endl;
-	x.fill(0);
-	niters = bicgstab(&ilupc, Op, rho, x, nitmax);
-	cout << "iterated: " << niters << " times" << endl;
-	cout << "pc bicgstab resid: " << norm_2(rho - Op*x) << endl;
+	// cout << "************************** BICGSTAB - INCOMPLETE LU PC:" << endl;
+	// x.fill(0);
+	// niters = bicgstab(Op, rho, x, nitmax);
+	// cout << "iterated: " << niters << " times" << endl;
+	// cout << "bicgstab resid: " << (rho - Op*x).norm() << endl;
+	// x.fill(0);
+	// niters = bicgstab(&ilupc, Op, rho, x, nitmax);
+	// cout << "iterated: " << niters << " times" << endl;
+	// cout << "pc bicgstab resid: " << norm_2(rho - Op*x) << endl;
 
 	// cout << "************************** GMRES - INCOMPLETE LU PC:" << endl;
 	// x.fill(0);
